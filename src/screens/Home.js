@@ -1,27 +1,15 @@
 import React from "react";
-import { View,StyleSheet } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import 'react-native-gesture-handler';
-import { createStackNavigator } from '@react-navigation/stack';
+import { View, StyleSheet } from "react-native";
+import { TextInput } from "react-native-paper";
+import "react-native-gesture-handler";
 
- const Home = ()=>  {
-
+const Home = ({ navigation }) => {
   return (
-
-<View>
-
-<TextInput
-      label="Home"  
-    />
-</View>
-  
-
-   );
+    <View>
+      <TextInput label="Home" />
+    </View>
+  );
 };
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 export default Home;
-
-
