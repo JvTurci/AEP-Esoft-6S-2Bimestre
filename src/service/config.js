@@ -3,4 +3,4 @@ export const user = {
   senha: "admin",
 };
 
-export const codigoVerificacao = 123;
+export const codigoVerificacao = "123";
