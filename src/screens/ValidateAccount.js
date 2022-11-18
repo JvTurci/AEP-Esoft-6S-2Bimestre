@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { VStack, Heading, Text, HStack, useToast } from "native-base";
 import { LinearGradient } from "expo-linear-gradient";
-import Input from "../components/Input";
-import Button from "../components/Button";
+
 import { bgColor } from "../styles/global";
 import { codigoVerificacao } from "../service/config";
+
+import Input from "../components/Input";
+import Button from "../components/Button";
+import Header from "../components/Header";
+
 const ValidateAccount = ({ navigation }) => {
   const [code, setCode] = useState("");
   const toast = useToast();
@@ -37,12 +41,10 @@ const ValidateAccount = ({ navigation }) => {
   return (
     <LinearGradient
       colors={bgColor}
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{ flex: 1, padding:16, justifyContent: "center" }}
     >
-      <VStack w="1/2" p={10}>
-        <Heading textAlign="center" color="gray.100">
-          VALIDAR ACESSO
-        </Heading>
+      <VStack>
+        <Header title="VALIDAR ACESSO"/>
         <Text textAlign="center" color="gray.100" mt={8} fontSize="md">
           Verifique no seu email cadastrado {"\n"} um código de Segurança {"\n"}
           enviado por nós!

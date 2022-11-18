@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { VStack, Heading, useToast, Text, HStack } from "native-base";
 import { LinearGradient } from "expo-linear-gradient";
+import { bgColor } from "../styles/global";
 import Input from "../components/Input";
 import InputPassword from "../components/InputPassword";
 import Button from "../components/Button";
-import { bgColor } from "../styles/global";
+import Header from "../components/Header";
 
 const NewAccount = ({ navigation }) => {
   const [name, setName] = useState("");
@@ -27,12 +28,10 @@ const NewAccount = ({ navigation }) => {
   return (
     <LinearGradient
       colors={bgColor}
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{ flex: 1, padding:16, justifyContent: "center" }}
     >
-      <VStack w="1/2" p={10}>
-        <Heading textAlign="center" color="gray.100">
-          CADASTRO DE USUÁRIO
-        </Heading>
+      <VStack>
+        <Header title="CADASTRO DE USUÁRIO" />
         <Input
           placeholder="Nome Completo"
           value={name}

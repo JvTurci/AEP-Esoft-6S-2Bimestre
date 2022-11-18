@@ -23,7 +23,7 @@ const InputPassword = ({ value, onChange, placeholder }) => {
               }}
             />
           }
-          size={8}
+          size={6}
           mr={6}
           color="white"
         />

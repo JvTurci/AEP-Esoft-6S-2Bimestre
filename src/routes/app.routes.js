@@ -10,8 +10,8 @@ const AppRoutes = () => {
   return (
     <Stack.Navigator>
       <Stack.Group screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="NewAccount" component={NewAccount} />
         <Stack.Screen name="ValidateAccount" component={ValidateAccount} />
       </Stack.Group>

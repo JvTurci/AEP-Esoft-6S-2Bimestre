@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import { HStack, VStack, Checkbox, Heading, Text, useToast } from "native-base";
+import { HStack, VStack, Heading, Text, useToast } from "native-base";
 import { LinearGradient } from "expo-linear-gradient";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 import { bgColor } from "../styles/global";
+import { user } from "../service/config";
 import Input from "../components/Input";
 import InputPassword from "../components/InputPassword";
 import Button from "../components/Button";
-import { user } from "../service/config";
+import Header from "../components/Header";
 
-const Login = ({ navigation, signIn }) => {
+const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [checkBox, setCheckBox] = useState(false);
@@ -42,12 +44,10 @@ const Login = ({ navigation, signIn }) => {
   return (
     <LinearGradient
       colors={bgColor}
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{ flex: 1, padding:16, justifyContent: "center" }}
     >
-      <VStack w="1/2" p={10}>
-        <Heading textAlign="center" color="gray.100">
-          NOME DO APP{"\n"}SEU CARTÃO DIGITAL
-        </Heading>
+      <VStack>
+        <Header title={"NOME DO APP" + "\n" + "SEU CARTÃO DIGITAL"} />
         <Input placeholder="Email" value={email} onChangeText={setEmail} />
         <InputPassword
           value={password}
@@ -55,15 +55,18 @@ const Login = ({ navigation, signIn }) => {
           placeholder="Senha"
         />
         <HStack justifyContent="space-between" alignItems="center" mb={8}>
-          <Checkbox
+          <BouncyCheckbox
+            size={25}
+            fillColor="green"
+            unfillColor="#FFFFFF"
+            text="Lembrar Senha"
             isChecked={checkBox}
-            colorScheme="green"
-            onChange={() => setCheckBox(!checkBox)}
-          >
-            <Text color="gray.100" fontSize="md">
-              Lembrar senha
-            </Text>
-          </Checkbox>
+            textStyle={{
+              textDecorationLine: "none",
+              color: "#DDD"
+            }}
+            onPress={(isChecked) => {setCheckBox(!isChecked)}}
+          />
           <Button title="Entrar" w={32} h={10} onPress={realizaLogin} />
         </HStack>
         <VStack alignItems="center">
