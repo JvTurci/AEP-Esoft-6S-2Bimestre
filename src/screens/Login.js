@@ -1,64 +1,58 @@
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import { HStack, Icon, VStack, Checkbox, Heading, Text, useToast } from "native-base";
-import { Entypo } from "@expo/vector-icons";
+import { HStack, VStack, Checkbox, Heading, Text, useToast } from "native-base";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { bgColor } from "../styles/global";
-import TextInput from "../components/TextInput";
+import Input from "../components/Input";
+import InputPassword from "../components/InputPassword";
 import Button from "../components/Button";
-import { user } from "../service/config"
+import { user } from "../service/config";
 
 const Login = ({ navigation, signIn }) => {
-  const [hidePassword, setHidePassword] = useState(true);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [checkBox, setCheckBox] = useState(false);
   const toast = useToast();
 
   const realizaLogin = () => {
-    if(validarLogin()){
-      navigation.navigate('Home');
-    }
-    else{
+    if (validarLogin()) {
+      navigation.navigate("Home");
+    } else {
       toast.show({
         title: "Email ou Senha Inválido!",
         placement: "top",
-        bgColor: "red.500"
+        bgColor: "red.500",
       });
     }
+  };
+
+  function validarLogin() {
+    return email === user.email && password === user.senha;
   }
 
-  function validarLogin(){
-    return (email === user.email && password === user.senha)
-  }
+  const resetPassword = () => {
+    toast.show({
+      title: "Encaminhamos um email para redefir sua senha!",
+      placement: "top",
+      bgColor: "primary.500",
+    });
+  };
 
   return (
-    <LinearGradient colors={bgColor} style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <LinearGradient
+      colors={bgColor}
+      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+    >
       <VStack w="1/2" p={10}>
-        <Heading textAlign="center" color="gray.100">SEU CARTÃO DIGITAL</Heading>
-        <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
-        <TextInput
-          placeholder="Senha"
-          type={hidePassword ? "password" : "text"}
+        <Heading textAlign="center" color="gray.100">
+          NOME DO APP{"\n"}SEU CARTÃO DIGITAL
+        </Heading>
+        <Input placeholder="Email" value={email} onChangeText={setEmail} />
+        <InputPassword
           value={password}
-          onChangeText={setPassword}
-          mb={4}
-          InputRightElement={
-            <Icon
-              as={
-                <Entypo
-                  name={hidePassword ? "eye" : "eye-with-line"}
-                  onPress={() => {
-                    setHidePassword(!hidePassword);
-                  }}
-                />
-              }
-              size={8}
-              mr={6}
-              color="white"
-            />
-          }
+          onChange={setPassword}
+          placeholder="Senha"
         />
         <HStack justifyContent="space-between" alignItems="center" mb={8}>
           <Checkbox
@@ -70,15 +64,18 @@ const Login = ({ navigation, signIn }) => {
               Lembrar senha
             </Text>
           </Checkbox>
-          <Button title="Entrar" w={32} h={10} onPress={realizaLogin}/>
+          <Button title="Entrar" w={32} h={10} onPress={realizaLogin} />
         </HStack>
         <VStack alignItems="center">
-          <Button 
+          <Button
             title="Cadastrar"
             w={38}
-            onPress={() => {navigation.navigate('NewAccount')}}
+            mb={4}
+            onPress={() => {
+              navigation.navigate("NewAccount");
+            }}
           />
-          <TouchableOpacity onPress={() => {navigation.navigate('Home')}}>
+          <TouchableOpacity onPress={resetPassword}>
             <Text fontSize="md" underline color="gray.100">
               Esqueci minha senha
             </Text>

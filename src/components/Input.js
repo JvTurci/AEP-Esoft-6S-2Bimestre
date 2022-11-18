@@ -1,6 +1,6 @@
 import { Input as NativeBaseInput } from "native-base";
 
-const TextInput = ({ ...rest }) => {
+const Input = ({ ...rest }) => {
   return (
     <NativeBaseInput
       bg="gray.800"
@@ -19,4 +19,4 @@ const TextInput = ({ ...rest }) => {
   );
 };
 
-export default TextInput;
+export default Input;
